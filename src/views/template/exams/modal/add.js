@@ -256,6 +256,7 @@ const AddTemplate = ({onClose}) => {
                                     <Checkbox
                                         checked={template?.isOnlyMe}
                                         label={translations(locale)?.exam_template?.only_me}
+                                        style={{fontSize: '14px'}}
                                         onChange={(e, data) => handleChange('isOnlyMe', data?.checked)}
                                     />
                                 </Col>
@@ -343,7 +344,7 @@ const AddTemplate = ({onClose}) => {
                                             details?.length == index + 1 &&
                                             <button
                                                 onClick={addDetails}
-                                                className='btn btn-outline-secondary text-uppercase m-btn--pill'
+                                                className='btn btn-sm btn-outline-secondary text-uppercase m-btn--pill'
                                             >
                                                 {translations(locale)?.add}
                                             </button>
@@ -355,27 +356,25 @@ const AddTemplate = ({onClose}) => {
                     }
                 </div>
             </Modal.Body>
-            <Modal.Footer>
-                <div className='m-portlet__foot d-flex justify-content-center gap-10'>
-                    <button 
-                        onClick={onClose}
-                        className="btn m-btn--pill btn-link m-btn m-btn--custom"
-                    >
-                        {t('back')}        
-                    </button>
-                    <button
-                        onClick={() => handleSubmit(0)}
-                        className='btn m-btn--pill btn-success text-uppercase'
-                    >
-                        {translations(locale)?.save}
-                    </button>
-                    <button
-                        onClick={() => handleSubmit(1)}
-                        className='btn m-btn--pill btn-publish text-uppercase'
-                    >
-                        {translations(locale)?.action?.publish}
-                    </button>
-                </div>
+            <Modal.Footer style={{alignItems: 'center'}}>
+                <button 
+                    onClick={onClose}
+                    className="btn m-btn--pill btn-link m-btn m-btn--custom"
+                >
+                    {t('back')}        
+                </button>
+                <button
+                    onClick={() => handleSubmit(0)}
+                    className='btn btn-sm m-btn--pill btn-success text-uppercase'
+                >
+                    {translations(locale)?.save}
+                </button>
+                <button
+                    onClick={() => handleSubmit(1)}
+                    className='btn btn-sm m-btn--pill btn-publish text-uppercase'
+                >
+                    {translations(locale)?.action?.publish}
+                </button>
             </Modal.Footer>
             {
                 loading &&

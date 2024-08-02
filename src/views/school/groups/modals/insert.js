@@ -183,12 +183,12 @@ const InsertGroupModal = ({onClose, onSubmit, data}) => {
             <Modal.Body>
                 <div className="row">
                     <div className="col-12 form-group d-flex">
-                        <label className="col-4 col-form-label text-right label-pinnacle-bold">
+                        <label className="col-xxl-4 col-xl-4 col-form-label text-right label-pinnacle-bold">
                             {translations(locale)?.grade + ':'}
                         </label>
                         <input 
-                            className="col-4 col-form-label" 
-                            style={{background: '#EBEDF2', border: '1px solid #EBEDF2', borderRadius: 6}} 
+                            className="col-xxl-4 col-xl-4 col-form-label" 
+                            style={{background: '#EBEDF2', border: '1px solid #EBEDF2', borderRadius: 4, height: '33px'}} 
                             disabled={true} 
                             placeholder={data ? data + "'s gradename" : 'gradename'}
                         />
@@ -220,6 +220,7 @@ const InsertGroupModal = ({onClose, onSubmit, data}) => {
                                                         fluid
                                                         selection
                                                         additionPosition='bottom'
+                                                        style={{height: '33px'}}
                                                         upward={false}
                                                         closeOnChange
                                                         selectOnBlur={false}
@@ -237,6 +238,7 @@ const InsertGroupModal = ({onClose, onSubmit, data}) => {
                                                         multiple
                                                         clearable
                                                         additionPosition='bottom'
+                                                        style={{height: '33px'}}
                                                         upward={false}
                                                         closeOnChange
                                                         selectOnBlur={false}
@@ -255,19 +257,18 @@ const InsertGroupModal = ({onClose, onSubmit, data}) => {
                                                 </td> */}
                                                 <td>
                                                     <div className='pl-4'>
-                                                        <input 
-                                                            className="form-check-input modal-position col-form-label" 
-                                                            id='selectAll' type="checkbox" 
-                                                            value={row?.isAll} 
-                                                            onChange={(e, data) => handleCheckBoxChange(e.target.checked, i)}
-                                                            style={{ borderRadius: '4px', height: '18px', width: '18px'}} 
-                                                        />
                                                         <label 
                                                             className="form-check-label font-mulish" 
                                                             htmlFor="selectAll" 
                                                             style={{ color: '#575962', fontSize: '14px', marginLeft: '10px'}}
                                                         >
-                                                            {t('select_all')}
+                                                            <input 
+                                                                className="form-check-input col-form-label" 
+                                                                id='selectAll' type="checkbox" 
+                                                                value={row?.isAll} 
+                                                                onChange={(e, data) => handleCheckBoxChange(e.target.checked, i)}
+                                                                style={{ borderRadius: '4px', height: '18px', width: '18px', marginTop: '1px'}} 
+                                                            />&nbsp;&nbsp;{t('select_all')}
                                                         </label>
                                                     </div>
                                                 </td>
@@ -278,6 +279,7 @@ const InsertGroupModal = ({onClose, onSubmit, data}) => {
                                                             <button 
                                                                 onClick={() => removeRow(i)}
                                                                 className="btn btn-danger m-btn m-btn--icon m-btn--icon-only m-btn--pill"
+                                                                style={{height: '30px', width: '30px'}}
                                                             >
                                                                 <i className="la la-remove" />
                                                             </button>
@@ -296,6 +298,7 @@ const InsertGroupModal = ({onClose, onSubmit, data}) => {
                                             <button
                                                 onClick={addRow}
                                                 className="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only m-btn--pill d-inline-flex align-items-center justify-content-center"
+                                                style={{height: '30px', width: '30px'}}
                                             >
                                                 <AddIcon />
                                             </button>
@@ -316,7 +319,7 @@ const InsertGroupModal = ({onClose, onSubmit, data}) => {
                 </button>
                 <button
                     onClick={handleSubmit}
-                    className="btn m-btn--pill btn-success text-uppercase"
+                    className="btn btn-sm m-btn--pill btn-success text-uppercase"
                     style={{margin: -4}}
                 >
                     {t('save')}

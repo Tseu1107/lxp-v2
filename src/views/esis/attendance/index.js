@@ -329,7 +329,7 @@ const index = () => {
     const attendanceLogConfig = {
         excelExport: true,
         printButton: true,
-        isTableStriped: false,
+        isTableStriped: true,
         excelFileName: `${secureLocalStorage.getItem('selectedSchool')?.text}-${translations(locale)?.esis.attendance_daily}`,
         defaultSort: [{
             dataField: tableState?.sort || 'date',
@@ -684,8 +684,10 @@ const index = () => {
                                     <span className='ml-2'>{translations(locale).send}</span>
                                 </button>
 
-                                <div className="react-bootstrap-table table-responsive mt-4">
-                                    <table className='table table-bordered table custom-dt'>
+                                <div className="table-responsive mt-4">
+                                    <table 
+                                    className={'table table-striped table-bordered table-custom react-bootstrap-table'}
+                                    >
                                         <thead>
                                         <tr>
                                             <th></th>
@@ -735,7 +737,7 @@ const index = () => {
                                                                     <td>
                                                                         {ttObj.studentCount}
                                                                     </td>
-                                                                    <td style={{backgroundColor: ttObj.hasTeacherLog ? '#c9eae3' : '#f3aab6'}}>
+                                                                    <td style={{backgroundColor: ttObj.hasTeacherLog ? '#c9eae3' : '#f3aab6', color: 'black'}}>
                                                                         {ttObj.hasTeacherLog ? t('yes') : t('no')}
                                                                     </td>
                                                                     {
@@ -788,7 +790,7 @@ const index = () => {
                                                                     <td>
                                                                         {ttObj.studentCount}
                                                                     </td>
-                                                                    <td style={{backgroundColor: ttObj.hasTeacherLog ? '#c9eae3' : '#f3aab6'}}>
+                                                                    <td style={{backgroundColor: ttObj.hasTeacherLog ? '#c9eae3' : '#f3aab6', color: 'black'}}>
                                                                         {ttObj.hasTeacherLog ? t('yes') : t('no')}
                                                                     </td>
                                                                     {

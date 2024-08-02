@@ -35,6 +35,7 @@ const index = () => {
     const [className] = useState(location?.state?.className || selectedClass?.name)
     const [student, setStudent] = useState(null)
     const [studentTypeOptions, setStudentTypeOptions] = useState([])
+    const [countries, setCountries] = useState([])
 
     const [classStudents, setClassStudents] = useState([])
 
@@ -52,6 +53,7 @@ const index = () => {
                     setClassStudents(res?.classStudents || [])
                     setStudent(res?.student || {})
                     setStudentTypeOptions(res?.types || [])
+                    setCountries(res?.countries || [])
                 } else {
                     message(res.data.message)
                 }
@@ -198,27 +200,27 @@ const index = () => {
                                 <table style={{ color: '#4a4a4a' }}>
                                     <tbody>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('student.family_name')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('student.family_name')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.familyName || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('movement.last_name')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('movement.last_name')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.lastName || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('studentBook.name')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('studentBook.name')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.firstName || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('student.birth_date')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('student.birth_date')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.birthDate || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('gender')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('gender')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.gender?.toLowerCase() == 'm' ? t(locale)?.male : (student?.gender?.toLowerCase() == 'f' ? t('female') : '-')}</td>
                                         </tr>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('register_number')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('register_number')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.register || '-'}</td>
                                         </tr>
                                     </tbody>
@@ -228,23 +230,23 @@ const index = () => {
                                 <table style={{ color: '#4a4a4a' }}>
                                     <tbody>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('student.entry_date')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('student.entry_date')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.startDate || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('student.current_class')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('student.current_class')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.className || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('student.status')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('student.status')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.statusName || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('movement.from_school_name')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('movement.from_school_name')}</td>
                                             <td style={{ color: '#ff5b1d' }}>{student?.fromSchoolName || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <td className='py-1 pr-5 bolder'>{t('status')}</td>
+                                            <td className='py-1 pr-5 text-right bolder'>{t('status')}</td>
                                             <td style={{ color: '#ff5b1d' }}>
                                                 <SimpleDropdown
                                                     fluid
@@ -267,11 +269,11 @@ const index = () => {
                     student &&
                     <Tab
                         renderActiveOnly
-                        menu={{ secondary: true, pointing: true, className: 'primaryColor m-0 h-4' }}
+                        menu={{ secondary: true, pointing: true, className: 'primaryColor m-0 h-4 pt-2' }}
                         panes={[
                             {
                                 menuItem: t('studentBookNavs.personal_info'),
-                                render: () => <PersonalInformation student={student} refresh={() => setUpdateView(prev => !prev)} />,
+                                render: () => <PersonalInformation student={student} refresh={() => loadData()} countries={countries}/>,
                             },
                             {
                                 menuItem: t('studentBookNavs.grade'),
@@ -305,15 +307,14 @@ const index = () => {
                     />
                 }
             </div>
+
             {
                 loading &&
-                <>
-                    <div className="blockUI blockOverlay">
-                        <div className="blockUI blockMsg blockPage">
-                            <div className="m-loader m-loader--brand m-loader--lg" />
-                        </div>
-                    </div>
-                </>
+                <div className='loader-container'>
+                    <svg className="splash-spinner" viewBox="0 0 50 50">
+                        <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5" />
+                    </svg>
+                </div>
             }
         </div>
     )

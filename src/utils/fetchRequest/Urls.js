@@ -29,6 +29,13 @@ export const schoolClassDelete = 'school/class/delete'
 export const schoolClassStudents = 'school/class/students'
 
 export const studentBook = 'class/student-book/index'
+export const studentBookEdit = 'class/student-book/edit'
+export const studentBookContactPersons = 'class/student-book/contact-persons'
+export const studentBookContactPersonCreate = 'class/student-book/contact-person-create'
+export const studentBookContactPersonEdit = 'class/student-book/contact-person-edit'
+export const studentBookContactPersonDelete = 'class/student-book/contact-person-delete'
+export const studentBookRelations = 'class/student-book/relations'
+export const studentBookRelationDelete = 'class/student-book/relation-delete'
 
 // subject
 export const schoolSubjectIndex = 'school/subject/index'

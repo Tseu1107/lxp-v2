@@ -6,10 +6,10 @@ export const getFlatTreeData = (source, parentId = null) => {
     for (const node of source) {
         const object = { ...node };
         object.parent = parentId;
-        array = [ ...array, object ];
+        array = [...array, object];
         if (object.children?.length) {
             const children = getFlatTreeData(object.children, object.key);
-            array = [ ...array, ...children ];
+            array = [...array, ...children];
         }
         delete object.children;
     }
@@ -71,6 +71,14 @@ export const hexToRgb = (hex) => {
         g: parseInt(result[2], 16),
         b: parseInt(result[3], 16)
     } : null;
+};
+
+export const isValidEmail = (email = '') => {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
 };
 
 export const isValidDate = (str) => {
@@ -331,7 +339,7 @@ export const getDateByDateObject = (dateObject) => {
 export const toDropdownArray = (array = [], valueKey = '', textKey = '') => {
     const tempList = []
 
-    array.map((obj,index)=>{
+    array.map((obj, index) => {
         tempList.push({
             value: valueKey ? obj[valueKey] : index + 1,
             text: obj[textKey]
@@ -344,8 +352,8 @@ export const toDropdownArray = (array = [], valueKey = '', textKey = '') => {
 export const toTreeData = (array = [], valueKey = '', textKey = '', parentKey = '', activeOnly = true) => {
     const tempList = []
 
-    array.map(obj=>{
-        if(activeOnly && !obj.isActive) {
+    array.map(obj => {
+        if (activeOnly && !obj.isActive) {
             return;
         }
         tempList.push({
@@ -363,9 +371,9 @@ export const toTime = (seconds = 0) => {
     const minute = Math.floor((seconds - (hour * 3600)) / 60);
     const sec = seconds - (hour * 3600) - (minute * 60);
 
-    if(hour > 0) {
+    if (hour > 0) {
         return ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2) + ':' + ('0' + sec).slice(-2)
-    } else if(minute > 0) {
+    } else if (minute > 0) {
         return ('0' + minute).slice(-2) + ':' + ('0' + sec).slice(-2)
     }
 
@@ -381,7 +389,7 @@ export const secondsToHms = (d) => {
     var mDisplay = m > 0 ? (m + ":") : "00:";
     var sDisplay = s > 0 ? (s + "") : "00";
 
-    return hDisplay + (parseInt(mDisplay) > 0 && parseInt(mDisplay) < 10 ? ('0' + mDisplay) : mDisplay) + (parseInt(sDisplay) > 0 && parseInt(sDisplay) < 10 ? ('0' + sDisplay) : sDisplay); 
+    return hDisplay + (parseInt(mDisplay) > 0 && parseInt(mDisplay) < 10 ? ('0' + mDisplay) : mDisplay) + (parseInt(sDisplay) > 0 && parseInt(sDisplay) < 10 ? ('0' + sDisplay) : sDisplay);
 }
 
 export const secondsToMs = (d) => {
@@ -393,14 +401,14 @@ export const secondsToMs = (d) => {
     var mDisplay = m > 0 ? m + (m == 1 ? ":" : ":") : "00:";
     var sDisplay = s > 0 ? s + (s == 1 ? ":" : "") : "00";
 
-    return (hDisplay > 0 ? hDisplay : '') + (parseInt(mDisplay) > 0 && parseInt(mDisplay) < 10 ? ('0' + mDisplay) : mDisplay) + (parseInt(sDisplay) > 0 && parseInt(sDisplay) < 10 ? ('0' + sDisplay) : sDisplay); 
+    return (hDisplay > 0 ? hDisplay : '') + (parseInt(mDisplay) > 0 && parseInt(mDisplay) < 10 ? ('0' + mDisplay) : mDisplay) + (parseInt(sDisplay) > 0 && parseInt(sDisplay) < 10 ? ('0' + sDisplay) : sDisplay);
 }
 
 export const toDropdownData = (array = [], valueKey = '', textKey = '', extra = false) => {
     const tempList = []
 
-    array.map(obj=>{
-        if(extra){
+    array.map(obj => {
+        if (extra) {
             tempList.push({
                 value: obj[valueKey],
                 text: obj[textKey],
@@ -412,7 +420,7 @@ export const toDropdownData = (array = [], valueKey = '', textKey = '', extra = 
                 text: obj[textKey],
             })
         }
-        
+
     })
 
     return tempList
@@ -427,21 +435,21 @@ export const getWindowDimensions = () => {
 }
 
 export const dateObjectFormat = (dateObj = {}, showTime = false) => {
-    if(dateObj.date) {
-        if(showTime) {
-            return dateObj.date?.substring(0,19)
+    if (dateObj.date) {
+        if (showTime) {
+            return dateObj.date?.substring(0, 19)
         }
-        return dateObj.date?.substring(0,10)
+        return dateObj.date?.substring(0, 10)
     }
 
     return null
 }
 
 export const takenPercent = (taken = 0, total = 0) => {
-    if(total == 0 || taken == 0) {
+    if (total == 0 || taken == 0) {
         return 0
     }
-    return ((taken/total) * 100).toFixed(2)
+    return ((taken / total) * 100).toFixed(2)
 }
 
 export const replaceHTMLEntities = (str = '') => {
@@ -454,7 +462,7 @@ export const replaceHTMLEntities = (str = '') => {
         '&ndash;': '-',
         '&nbsp;': '',
     };
-  
+
     return str.replace(/&[\w#]+;/g, entity => {
         return htmlEntities[entity] || '';
     });
@@ -476,8 +484,8 @@ export const listToCrosswordObj = (array = [], isStudentResult) => {
     if (array && array.length > 0) {
         let across = {}
         let down = {}
-        for(let i = 0; i < array.length; i++){
-            if(array[i].orientation == 'across'){
+        for (let i = 0; i < array.length; i++) {
+            if (array[i].orientation == 'across') {
                 let acrossObj = {
                     [array[i].position]: {
                         clue: array[i].clue,
@@ -494,7 +502,7 @@ export const listToCrosswordObj = (array = [], isStudentResult) => {
                 }
 
                 across = Object.assign(across, acrossObj);
-            } else if(array[i].orientation == 'down') {
+            } else if (array[i].orientation == 'down') {
                 let downObj = {
                     [array[i].position]: {
                         clue: array[i].clue,
@@ -511,7 +519,7 @@ export const listToCrosswordObj = (array = [], isStudentResult) => {
 
                 down = Object.assign(down, downObj);
             }
-        }   
+        }
 
         let crossData = {
             across: across,

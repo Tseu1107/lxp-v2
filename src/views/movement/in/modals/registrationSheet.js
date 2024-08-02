@@ -34,7 +34,7 @@ const registrationSheet = ({ onClose, onSubmit }) => {
                         </button>
                         <button
                             onClick={onSubmit}
-                            className="btn m-btn--pill btn-success text-uppercase"
+                            className="btn m-btn--pill btn-success text-uppercase bolder"
                         >
                             {t('print') || null}
                         </button>

@@ -83,6 +83,10 @@ const response = ({onClose, onSubmit, id, status}) => {
         setResponse({...response, [name]: value})
     }
 
+    const clearDateRange = () => {
+        setResponse({...response, startDate: null, endDate: null})
+    }
+
     const handleStatusChange = status => {
         if (status == 'accepted') setResponse({...response, status, description: null})
         else setResponse({
@@ -169,28 +173,28 @@ const response = ({onClose, onSubmit, id, status}) => {
                                                             />
                                                         </Col>
                                                         <Col
-                                                            className='d-flex bolder flex-column justify-content-center'>
+                                                            className='d-flex bolder flex-column justify-content-center text-grey' style={{fontSize: '14px'}}>
                                                             <Row>
                                                                 <Col md={3} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.className}:</Col>
+                                                                    >{translations(locale)?.className}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.className || '-'}</Col>
                                                             </Row>
                                                             <Row>
                                                                 <Col md={3} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.code}:</Col>
+                                                                    >{translations(locale)?.code}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.studentCode || '-'}</Col>
                                                             </Row>
                                                             <Row>
                                                                 <Col md={3} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.last_name}:</Col>
+                                                                    >{translations(locale)?.last_name}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.lastName || '-'}</Col>
                                                             </Row>
                                                             <Row>
                                                                 <Col md={3} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.first_name}:</Col>
+                                                                    >{translations(locale)?.first_name}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.firstName || '-'}</Col>
                                                             </Row>
@@ -201,30 +205,30 @@ const response = ({onClose, onSubmit, id, status}) => {
                                         </Col>
                                         <Col md={12}>
                                             <div className='m-portlet'>
-                                                <div className='m-portlet__body bolder'>
+                                                <div className='m-portlet__body bolder text-grey' style={{fontSize: '14px'}}>
                                                     <Row>
                                                         <Col md={4} className='px-2 py-1 text-md-right'
-                                                             style={{color: '#868aa8'}}>{translations(locale)?.absent?.request_sender}:</Col>
+                                                            >{translations(locale)?.absent?.request_sender}:</Col>
                                                         <Col className='px-2 py-1'>{request?.sender || '-'}</Col>
                                                     </Row>
                                                     <Row>
                                                         <Col md={4} className='px-2 py-1 text-md-right'
-                                                             style={{color: '#868aa8'}}>{translations(locale)?.absent?.reason}:</Col>
+                                                            >{translations(locale)?.absent?.reason}:</Col>
                                                         <Col className='px-2 py-1'>{request?.type || '-'}</Col>
                                                     </Row>
                                                     <Row>
                                                         <Col md={4} className='px-2 py-1 text-md-right'
-                                                             style={{color: '#868aa8'}}>{translations(locale)?.absent?.start_date}:</Col>
+                                                            >{translations(locale)?.absent?.start_date}:</Col>
                                                         <Col className='px-2 py-1'>{request?.startDate || '-'}</Col>
                                                     </Row>
                                                     <Row>
                                                         <Col md={4} className='px-2 py-1 text-md-right'
-                                                             style={{color: '#868aa8'}}>{translations(locale)?.absent?.end_date}:</Col>
+                                                            >{translations(locale)?.absent?.end_date}:</Col>
                                                         <Col className='px-2 py-1'>{request?.endDate || '-'}</Col>
                                                     </Row>
                                                     <Row>
                                                         <Col md={4} className='px-2 py-1 text-md-right'
-                                                             style={{color: '#868aa8'}}>{translations(locale)?.absent?.description}:</Col>
+                                                            >{translations(locale)?.absent?.description}:</Col>
                                                         <Col className='px-2 py-1'>{request?.description || '-'}</Col>
                                                     </Row>
                                                     {
@@ -355,7 +359,10 @@ const response = ({onClose, onSubmit, id, status}) => {
                                                                                         }}
                                                                                     />
                                                                                 </Col>
-                                                                                <div className="pickerSeparator">
+                                                                                <div className="pickerSeparator"
+                                                                                    style={{cursor: 'pointer',
+                                                                                        lineHeight: '1em'}}
+                                                                                    onClick={clearDateRange}>
                                                                                     <i className="la la-ellipsis-h"/>
                                                                                 </div>
                                                                                 <Col className='pl-0'>
@@ -474,7 +481,7 @@ const response = ({onClose, onSubmit, id, status}) => {
                             {translations(locale)?.back}
                         </button>
                         <button
-                            className="btn m-btn--pill btn-success m-btn--wide"
+                            className="btn m-btn--pill btn-success m-btn--wide text-uppercase"
                             onClick={handleSave}
                         >
                             {translations(locale)?.save}

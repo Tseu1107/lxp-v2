@@ -78,7 +78,7 @@ const view = ({onClose, id, type}) => {
         >
             <Modal.Header closeButton style={{padding: '1rem'}}>
                 <Modal.Title className="modal-title d-flex flex-row justify-content-between w-100">
-                    {t('absent.request')}
+                    {t('action.view')}
                 </Modal.Title>
                 {
                     showAttachment
@@ -108,7 +108,7 @@ const view = ({onClose, id, type}) => {
                                     <Row>
                                         <Col md={12}>
                                             <div className='m-portlet'>
-                                                <div className='m-portlet__body'>
+                                                <div className='m-portlet__body' style={{fontSize: '14px'}}>
                                                     <Row>
                                                         <Col md={4}
                                                              className='d-flex align-items-center justify-content-center'>
@@ -125,26 +125,26 @@ const view = ({onClose, id, type}) => {
                                                         <Col
                                                             className='d-flex bolder flex-column justify-content-center'>
                                                             <Row>
-                                                                <Col md={3} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.className}:</Col>
+                                                                <Col md={3} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.className}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{student?.className || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={3} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.code}:</Col>
+                                                                <Col md={3} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.code}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{student?.studentCode || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={3} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.last_name}:</Col>
+                                                                <Col md={3} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.last_name}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{student?.lastName || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={3} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.first_name}:</Col>
+                                                                <Col md={3} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.first_name}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{student?.firstName || '-'}</Col>
                                                             </Row>
@@ -158,39 +158,39 @@ const view = ({onClose, id, type}) => {
                                                 {
                                                     type === 'request'
                                                         ?
-                                                        <div className='m-portlet__body bolder'>
+                                                        <div className='m-portlet__body bolder' style={{fontSize: '14px'}}>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.absent?.request_sender}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.absent?.request_sender}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.sender || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.absent?.reason}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.absent?.reason}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.reason || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.type}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.type}:</Col>
                                                                 <Col className='px-2 py-1'>{request?.type || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.absent?.start_date}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.absent?.start_date}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.startDate || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.absent?.end_date}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.absent?.end_date}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.endDate || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.absent?.description}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.absent?.description}:</Col>
                                                                 <Col className='px-2 py-1'>{request?.note || '-'}</Col>
                                                             </Row>
                                                             {
@@ -211,41 +211,41 @@ const view = ({onClose, id, type}) => {
                                                             }
                                                         </div>
                                                         :
-                                                        <div className='m-portlet__body bolder'>
+                                                        <div className='m-portlet__body bolder' style={{fontSize: '14px'}}>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.registered}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.registered}:</Col>
                                                                 <Col className='px-2 py-1'>
                                                                     <p>{`${details?.user} (${details?.username})`}</p>
                                                                     <p>{`${details?.date}`}</p>
                                                                 </Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.status}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.status}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.reason || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.type}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.type}:</Col>
                                                                 <Col className='px-2 py-1'>{request?.type || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.absent?.start_date}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.absent?.start_date}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.startDate || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.absent?.end_date}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.absent?.end_date}:</Col>
                                                                 <Col
                                                                     className='px-2 py-1'>{request?.endDate || '-'}</Col>
                                                             </Row>
                                                             <Row>
-                                                                <Col md={4} className='px-2 py-1 text-md-right'
-                                                                     style={{color: '#868aa8'}}>{translations(locale)?.absent?.description}:</Col>
+                                                                <Col md={4} className='px-2 py-1 text-md-right text-grey'
+                                                                    >{translations(locale)?.absent?.description}:</Col>
                                                                 <Col className='px-2 py-1'>{request?.note || '-'}</Col>
                                                             </Row>
                                                             {
@@ -272,22 +272,22 @@ const view = ({onClose, id, type}) => {
                                 </Col>
                                 <Col md={7} className='pl-md-2'>
                                     <div className='m-portlet'>
-                                        <div className='m-portlet__body'>
+                                        <div className='m-portlet__body' style={{fontSize: '14px'}}>
                                             {
                                                 type === 'request' && <>
                                                     <Row className='bolder'>
                                                         <Col className='px-2 py-1 text-md-right'
-                                                             style={{color: '#868aa8'}}>{translations(locale)?.status}:</Col>
+                                                            >{translations(locale)?.status}:</Col>
                                                         <Col className='px-2 py-1'>{details?.statusName || '-'}</Col>
                                                     </Row>
                                                     <Row className='bolder'>
                                                         <Col className='px-2 py-1 text-md-right'
-                                                             style={{color: '#868aa8'}}>{translations(locale)?.absent?.user}:</Col>
+                                                            >{translations(locale)?.absent?.user}:</Col>
                                                         <Col className='px-2 py-1'>{details?.user || '-'}</Col>
                                                     </Row>
                                                     <Row className='bolder'>
                                                         <Col className='px-2 py-1 text-md-right'
-                                                             style={{color: '#868aa8'}}>{translations(locale)?.date}:</Col>
+                                                            >{translations(locale)?.date}:</Col>
                                                         <Col className='px-2 py-1'>{details?.date || '-'}</Col>
                                                     </Row>
                                                 </>

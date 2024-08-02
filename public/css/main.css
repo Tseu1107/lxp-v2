@@ -4032,7 +4032,7 @@ select.form-control:focus::-ms-value {
     text-align: center;
     border-right: 0;
     border-left: 0;
-    padding: 13px 15px 2px 17px;
+    padding: 13px 13px 2px 13px;
 }
 
 .DayPickerInputOverlay {

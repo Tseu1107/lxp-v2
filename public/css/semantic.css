@@ -17445,6 +17445,13 @@ ol.ui.list li[value]:before {
     vertical-align: middle
 }
 
+.ui.checkbox label::before {
+    background: #fff;
+    height: 18px;
+    width: 18px;
+    border-color: rgba(34, 36, 38, .35)
+}
+
 .ui.checkbox .box:hover::before, .ui.checkbox label:hover::before {
     background: #fff;
     border-color: rgba(34, 36, 38, .35)

@@ -29,6 +29,7 @@ const yearStructure = () => {
     };
 
     const onRowEdit = (rowId, isEditing = false) => {
+
         // const seasonList = tableRef?.current?.getCurrentDatas();
         const seasonList = [...seasons]
 
@@ -185,7 +186,7 @@ const yearStructure = () => {
             },
             formatter: (cell, row) => {
                 if (row?.isEdit) {
-                    return <div style={{display: 'inline-flex'}}>
+                    return <div style={{display: 'flex', alignItems: 'center'}}>
                         <button
                             className='btn btn-success m-btn--icon btn-sm m-btn--icon-only m-btn--pill d-flex text-white align-items-center justify-content-center'
                             onClick={() => {
@@ -204,7 +205,7 @@ const yearStructure = () => {
                         </button>
                     </div>
                 } else {
-                    return <div style={{display: 'inline-flex'}}>
+                    return <div style={{display: 'flex'}}>
                         <button
                             className='btn btn-primary m-btn--icon btn-sm m-btn--icon-only m-btn--pill d-flex text-white align-items-center justify-content-center'
                             onClick={() => {
@@ -219,7 +220,7 @@ const yearStructure = () => {
                                 onSubmitDelete(row?.id)
                             }}
                         >
-                            <i className='fa flaticon-delete-1' />
+                            <i className='fa flaticon-delete' />
                         </button>
                     </div>
                 }

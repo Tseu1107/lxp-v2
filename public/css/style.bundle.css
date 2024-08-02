@@ -1564,6 +1564,8 @@ label {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
+    /* accent-color: unset; */
+    --bs-table-accent-bg: unset !important;
     background-color: #f4f5f8
 }
 

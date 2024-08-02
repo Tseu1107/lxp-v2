@@ -4,33 +4,37 @@ import { useLocation } from 'react-router'
 import CustomInlineEdit from 'modules/CustomInlineEdit'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useTranslation } from "react-i18next";
+import { useSelector } from 'react-redux'
 import { fetchRequest } from 'utils/fetchRequest'
-import { NDropdown as Dropdown } from 'widgets/Dropdown'
-import { classStudentStudentBookEdit } from 'utils/fetchRequest/Urls'
+import { NDropdown as SimpleDropdown } from 'widgets/Dropdown'
+import { Dropdown } from 'semantic-ui-react'
+import { studentBookEdit } from 'utils/fetchRequest/Urls'
 
-const selfInformation = ({ student, refresh }) => {
+const selfInformation = ({ student, refresh, countries = [] }) => {
     const location = useLocation()
 
     const locale = "mn"
     const { t } = useTranslation();
+    const { selectedSchool, selectedClass } = useSelector(state => state.schoolData);
     const [loading, setLoading] = useState(false)
+    const [selectedCountry, setSelectedCountry] = useState(student?.schoolCountry || null)
 
     const handleSubmit = (name, value) => {
-        // setLoading(true)
-        // fetchRequest(classStudentStudentBookEdit, 'POST', { column: name, value, id: student?.id, type: 'information' })
-        //     .then(res => {
-        //         if (res.success) {
-        //             message(res.data.message, res.success)
-        //             refresh()
-        //         } else {
-        //             message(res.data.message)
-        //         }
-        //         setLoading(false)
-        //     })
-        //     .catch(() => {
-        //         message(t('err.error_occurred'))
-        //         setLoading(false)
-        //     })
+        setLoading(true)
+        fetchRequest(studentBookEdit, 'POST', { school: selectedSchool?.id, student: student?.id, column: name, value, id: student?.id, type: 'information' })
+            .then(res => {
+                if (res.success) {
+                    message(res?.message, true)
+                    refresh()
+                } else {
+                    message(res?.message)
+                }
+                setLoading(false)
+            })
+            .catch(() => {
+                message(t('err.error_occurred'))
+                setLoading(false)
+            })
     }
 
     return (
@@ -114,7 +118,7 @@ const selfInformation = ({ student, refresh }) => {
                                     <tr>
                                         <td className='py-1 pr-5 text-right bolder'>{t('gender')}</td>
                                         <td>
-                                            <Dropdown
+                                            <SimpleDropdown
                                                 simple
                                                 value={student?.gender}
                                                 onChange={(e, data) => handleSubmit('gender', data?.value)}
@@ -147,20 +151,6 @@ const selfInformation = ({ student, refresh }) => {
                                             />
                                         </td>
                                     </tr>
-                                    {/* <tr>
-                                        <td className='py-1 pr-5 bolder'>{t('studentBook.ethnicity')}</td>
-                                        <td>
-                                            <CustomInlineEdit
-                                                value={student?.ethnicity}
-                                                onSaveClick={text => handleSubmit('ethnicity', text)}
-                                                buttons={true}
-                                                saveButtonClassName="schoolLogoInlineEditButton"
-                                                discardButtonClassName="schoolLogoInlineEditButton"
-                                                labelClassName="underline"
-                                                wrapperClassName="d-flex"
-                                            />
-                                        </td>
-                                    </tr> */}
                                     <tr>
                                         <td className='py-1 pr-5 text-right bolder'>{t('studentBook.birthCertNumber')}</td>
                                         <td>
@@ -189,34 +179,122 @@ const selfInformation = ({ student, refresh }) => {
                                             />
                                         </td>
                                     </tr>
-                                    {/* <tr>
-                                        <td className='py-1 pr-5 bolder'>{t('studentBook.birth_place')}</td>
-                                        <td>
-                                            <CustomInlineEdit
-                                                value={student?.birthPlace}
-                                                onSaveClick={text => handleSubmit('birthPlace', text)}
-                                                buttons={true}
-                                                saveButtonClassName="schoolLogoInlineEditButton"
-                                                discardButtonClassName="schoolLogoInlineEditButton"
-                                                labelClassName="underline"
-                                                wrapperClassName="d-flex"
-                                            />
-                                        </td>
-                                    </tr> */}
                                 </tbody>
                             </table>
                         </Col>
                     </Row>
                 </Container>
             </div>
+
             {
-                loading &&
-                <>
-                    <div className="blockUI blockOverlay" />
-                    <div className="blockUI blockMsg blockPage">
-                        <div className="m-loader m-loader--brand m-loader--lg" />
+                selectedSchool?.isOnlineSchool && <>
+                    <div className='d-flex mt-4'>
+                        <span className='text-primary pinnacle-regular bolder fs-10'>
+                            {t('common.schoolInfo')}
+                        </span>
+                    </div>
+                    <div className='br-08 position-relative p-5 mt-2' style={{ border: '1px solid rgba(255, 91, 29, 0.1)' }}>
+                        <Container fluid className='pt-5'>
+                            <Row>
+                                <Col md={'auto'} className='d-flex'>
+                                    <table style={{ color: '#3c3f42', marginLeft: 190 }}>
+                                        <tbody>
+                                            <tr>
+                                                <td className='py-1 pr-5 text-right bolder'>{t('common.schoolCountry')}</td>
+                                                <td>
+                                                    <Dropdown
+                                                        fluid
+                                                        selection
+                                                        closeOnChange
+                                                        value={selectedCountry}
+                                                        options={countries?.map(obj => {
+                                                            return {
+                                                                value: obj?.id,
+                                                                text: obj?.name
+                                                            }
+                                                        })}
+                                                        placeholder={'-' + t('select') + '-'}
+                                                        onChange={(e, data) => { 
+                                                            setSelectedCountry(data?.value)
+                                                            handleSubmit('schoolCountry', data?.value)
+                                                         }}
+                                                        style={{
+                                                            minWidth: 250
+                                                        }}
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className='py-1 pr-5 pt-2 text-right bolder'>{t('studentBook.city')}</td>
+                                                <td className='pt-2'>
+                                                    <CustomInlineEdit
+                                                        value={student?.schoolCity}
+                                                        onSaveClick={text => handleSubmit('schoolCity', text)}
+                                                        buttons={true}
+                                                        saveButtonClassName="schoolLogoInlineEditButton"
+                                                        discardButtonClassName="schoolLogoInlineEditButton"
+                                                        labelClassName="underline"
+                                                        wrapperClassName="d-flex"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className='py-1 pr-5 text-right bolder'>{t('common.schoolName')}</td>
+                                                <td>
+                                                    <CustomInlineEdit
+                                                        value={student?.schoolName}
+                                                        onSaveClick={text => handleSubmit('schoolName', text)}
+                                                        buttons={true}
+                                                        saveButtonClassName="schoolLogoInlineEditButton"
+                                                        discardButtonClassName="schoolLogoInlineEditButton"
+                                                        labelClassName="underline"
+                                                        wrapperClassName="d-flex"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className='py-1 pr-5 text-right bolder'>{t('class_name')}</td>
+                                                <td>
+                                                    <CustomInlineEdit
+                                                        value={student?.schoolClass}
+                                                        onSaveClick={text => handleSubmit('schoolClass', text)}
+                                                        buttons={true}
+                                                        saveButtonClassName="schoolLogoInlineEditButton"
+                                                        discardButtonClassName="schoolLogoInlineEditButton"
+                                                        labelClassName="underline"
+                                                        wrapperClassName="d-flex"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td className='py-1 pr-5 text-right bolder'>{t('school_settings.school_shift')}</td>
+                                                <td>
+                                                    <CustomInlineEdit
+                                                        value={student?.schoolShift}
+                                                        onSaveClick={text => handleSubmit('schoolShift', text)}
+                                                        buttons={true}
+                                                        saveButtonClassName="schoolLogoInlineEditButton"
+                                                        discardButtonClassName="schoolLogoInlineEditButton"
+                                                        labelClassName="underline"
+                                                        wrapperClassName="d-flex"
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </Col>
+                            </Row>
+                        </Container>
                     </div>
                 </>
+            }
+            {
+                loading &&
+                <div className='loader-container'>
+                    <svg className="splash-spinner" viewBox="0 0 50 50">
+                        <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5" />
+                    </svg>
+                </div>
             }
         </>
     )

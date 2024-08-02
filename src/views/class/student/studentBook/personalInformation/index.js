@@ -4,9 +4,10 @@ import { Row, Col } from 'react-bootstrap'
 import secureLocalStorage from 'react-secure-storage'
 import { useTranslation } from "react-i18next";
 import SelfInformation from './components/selfInformation'
+import ContactPersons from './components/contactPersons'
 import ParentsInformation from './components/parentsInformation'
 
-const index = ({ student, refresh }) => {
+const index = ({ student, refresh, countries = [] }) => {
     const locale = "mn"
     const { t } = useTranslation();
 
@@ -15,9 +16,11 @@ const index = ({ student, refresh }) => {
     const renderContent = () => {
         switch (selectedType) {
             case 'SELF_INFORMATION':
-                return <SelfInformation />
+                return <SelfInformation student={student} refresh={refresh} countries={countries}/>
+            case 'CONTACT':
+                return <ContactPersons student={student} />
             case 'RELATION':
-                return <ParentsInformation />
+                return <ParentsInformation student={student} />
             default:
                 return null
         }
@@ -29,7 +32,8 @@ const index = ({ student, refresh }) => {
                 <Col md={2}>
                     <div className='unattached-tab'>
                         <div className={selectedType === 'SELF_INFORMATION' ? "m-portlet br-12 item active" : "m-portlet br-12 item"} style={{
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            textTransform: 'none'
                         }}
                             onClick={() => {
                                 setSelectedType('SELF_INFORMATION')
@@ -41,7 +45,8 @@ const index = ({ student, refresh }) => {
                             </div>
                         </div>
                         <div className={selectedType === 'CONTACT' ? "m-portlet br-12 item active" : "m-portlet br-12 item"} style={{
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            textTransform: 'none'
                         }}
                             onClick={() => {
                                 setSelectedType('CONTACT')
@@ -53,7 +58,8 @@ const index = ({ student, refresh }) => {
                             </div>
                         </div>
                         <div className={selectedType === 'RELATION' ? "m-portlet br-12 item active" : "m-portlet br-12 item"} style={{
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            textTransform: 'none'
                         }}
                             onClick={() => {
                                 setSelectedType('RELATION')

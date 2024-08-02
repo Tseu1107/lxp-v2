@@ -77,6 +77,7 @@ const index = () => {
     const config = {
         excelExport: true,
         printButton: true,
+        excelFileName: t('successCoach.group') + (selectedCoachUser ? '-' + coachUsers?.find(obj => obj?.id === selectedCoachUser)?.firstName : ''),
         defaultSort: [{
             dataField: tableState?.sort || 'subjectName',
             order: tableState?.order || 'asc'

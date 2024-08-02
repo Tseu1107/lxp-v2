@@ -194,9 +194,12 @@ const AddStudentMovementIn = ({ onClose, onSubmit, grade = null, isGenerateCode 
                                             placeholder={'-' + t('select') + '-'}
                                             onChange={(e, data) => handleChange(key, 'gender', data?.value)}
                                             style={{
-                                                minHeight: '2.3em',
-                                                height: '2.3em',
-                                                paddingTop: '0.6em'
+                                                minHeight: '2.5em',
+                                                height: '2.5em',
+                                                paddingTop: '0.6em',
+                                                color: '#575962',
+                                                fontSize: '0.9em',
+                                                fontFamily: 'MulishRegular'
                                             }}
                                         />
                                     </td>
@@ -232,7 +235,9 @@ const AddStudentMovementIn = ({ onClose, onSubmit, grade = null, isGenerateCode 
                         }
                         <tr style={{ borderBottomColor: 'white' }}>
                             <td colSpan={!isGenerateCode ? 8 : 7} style={{ borderLeftColor: 'white' }} />
-                            <td width={50} className='p-1 text-center'>
+                            <td width={50} className='p-1 text-center' style={{
+                                borderBottom: 'solid 1px #dee2e6'
+                            }}>
                                 <button
                                     className='btn btn-outline-info m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill'
                                     onClick={addStudents}

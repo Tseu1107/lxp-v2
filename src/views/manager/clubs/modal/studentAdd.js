@@ -231,7 +231,7 @@ const studentAdd = ({ onClose, group, onSubmit, modalClassName }) => {
                     rows?.map((row, index) => (
                         <Row key={index} className='my-2'>
                             <Col>
-                                <Row>
+                                <Row className='align-items-center'>
                                     <Col md={4} className='col-form-label text-right label-pinnacle-bold'>
                                         {translations(locale)?.grade}*
                                     </Col>
@@ -265,7 +265,8 @@ const studentAdd = ({ onClose, group, onSubmit, modalClassName }) => {
                                             onChange={(e, data) => handleClassChange(data, index)}
                                         />
                                         <Checkbox
-                                            className='mt-2'
+                                            className='mt-2 text-grey'
+                                            style={{fontSize: '14px'}}
                                             checked={row?.isAll}
                                             label={translations(locale)?.finance?.select_all_students}
                                             onChange={(e, data) => handleCheckBoxChange(data?.checked, index)}
@@ -274,7 +275,7 @@ const studentAdd = ({ onClose, group, onSubmit, modalClassName }) => {
                                 </Row>
                             </Col>
                             <Col>
-                                <Row>
+                                <Row className='align-items-center'>
                                     <Col md={4} className='col-form-label text-right label-pinnacle-bold'>
                                         {translations(locale)?.student?.title}*
                                     </Col>
@@ -313,13 +314,13 @@ const studentAdd = ({ onClose, group, onSubmit, modalClassName }) => {
             </Modal.Body>
             <Modal.Footer className="text-center">
                 <button
-                    className='btn m-btn--pill btn-outline-metal text-uppercase mr-3'
+                    className='btn btn-sm m-btn--pill btn-outline-metal text-uppercase mr-3'
                     onClick={onClose}
                 >
                     {translations(locale)?.close}
                 </button>
                 <button
-                    className='btn m-btn--pill btn-success text-uppercase'
+                    className='btn btn-sm m-btn--pill btn-success text-uppercase'
                     onClick={handleSubmit}
                 >
                     {translations(locale)?.movement?.add}

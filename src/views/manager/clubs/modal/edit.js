@@ -236,7 +236,7 @@ const EditClub = ({ onClose, selectedTableId }) => {
         >
             <Modal.Header closeButton style={{padding: '1rem'}}>
                 <Modal.Title className="modal-title d-flex flex-row justify-content-between w-100">
-                    {t('club.title')}
+                    {t('edit')}
                 </Modal.Title>
             </Modal.Header>
             <div className='tab'>
@@ -250,19 +250,19 @@ const EditClub = ({ onClose, selectedTableId }) => {
                             menuItem: translations(locale)?.general_info,
                             render: () => (
                                 <Modal.Body>
-                                    <div className='form-group m-form__group row'>
+                                    <div className='form-group m-form__group row align-items-center'>
                                         <label className='col-5 col-form-label text-right label-pinnacle-bold'>
                                             {translations(locale)?.subject?.type}
                                         </label>
-                                        <div className='col-4 col-form-label'>
+                                        <div className='col-4 col-form-label text-grey' style={{fontSize: '14px'}}>
                                             {club?.type}
                                         </div>
                                     </div>
-                                    <div className='form-group m-form__group row'>
+                                    <div className='form-group m-form__group row align-items-center'>
                                         <label className='col-5 col-form-label text-right label-pinnacle-bold'>
                                             {translations(locale)?.club?.title}
                                         </label>
-                                        <div className='col-4 col-form-label'>
+                                        <div className='col-4 col-form-label text-grey' style={{fontSize: '14px'}}>
                                             {club?.subjectName}
                                         </div>
                                     </div>

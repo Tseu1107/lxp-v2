@@ -147,7 +147,7 @@ const view = ({ onClose, group }) => {
                             className='btn m-btn--icon m-btn--icon-only btn-info br-03 mx-1'
                         >
                             <i
-                                className="la la-file-excel-o"
+                                className="la-old la-file-excel-o"
                                 style={{
                                     fontSize: '22px',
                                     color: '#ffffff',

@@ -34,7 +34,7 @@ const seasonResult = ({ onClose, group, season, rerender }) => {
     const [resultSeasonResultState, setResultSeasonResultState] = useState({
         exam: null,
         title: null,
-        urlData: state?.group,
+        urlData: null,
     })
     
     const seasonResultEditHandler = (state) => {

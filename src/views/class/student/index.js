@@ -4,7 +4,7 @@ import secureLocalStorage from 'react-secure-storage'
 import { NavLink, useLocation } from "react-router-dom"
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import message from '../../../modules/message'
+import message from 'modules/message'
 import TreeView from 'modules/TreeView'
 import HtmlHead from 'components/html-head/HtmlHead'
 import BreadcrumbList from 'components/breadcrumb-list/BreadcrumbList'

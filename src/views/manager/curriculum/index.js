@@ -76,7 +76,7 @@ const index = () => {
                         }
                     ]
                 }
-                grid={{paneWidth: 12, tabWidth: 3}}
+                grid={{paneWidth: 13, tabWidth: 3}}
             />
         </div>
     )

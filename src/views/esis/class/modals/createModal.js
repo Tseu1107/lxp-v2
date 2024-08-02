@@ -117,6 +117,7 @@ const createEsisClass = ({ onClose, onSubmit }) => {
                         type='text'
                         value={cell || ''}
                         className='form-control'
+                        style={{fontSize: '15px'}}
                         onChange={(e) => handleChange(row?.id, 'eschoolClassName', e?.target?.value)}
                     />
             },

@@ -548,7 +548,7 @@ const index = () => {
         },
     ]
 
-    const contextMenus = [
+    const [contextMenus, setContextMenus] = useState([
         {
             key: 'accept',
             icon: <CheckCircleTwoToneIcon sx={{ fontSize: '2rem !important', color: '#ff5b1d' }} />,
@@ -559,6 +559,32 @@ const index = () => {
             icon: <CancelTwoToneIcon sx={{ fontSize: '2rem !important', color: '#ff5b1d' }} />,
             title: translations(locale)?.decline,
         },
+        {
+            key: 'view',
+            icon: <PreviewTwoToneIcon sx={{ fontSize: '2rem !important', color: '#ff5b1d' }} />,
+            title: translations(locale)?.view,
+        },
+    ])
+
+    const excuseRequestContextMenus = [
+        {
+            key: 'accept',
+            icon: <CheckCircleTwoToneIcon sx={{ fontSize: '2rem !important', color: '#ff5b1d' }} />,
+            title: translations(locale)?.approve,
+        },
+        {
+            key: 'decline',
+            icon: <CancelTwoToneIcon sx={{ fontSize: '2rem !important', color: '#ff5b1d' }} />,
+            title: translations(locale)?.decline,
+        },
+        {
+            key: 'view',
+            icon: <PreviewTwoToneIcon sx={{ fontSize: '2rem !important', color: '#ff5b1d' }} />,
+            title: translations(locale)?.view,
+        },
+    ]
+
+    const excuseReportContextMenus = [
         {
             key: 'view',
             icon: <PreviewTwoToneIcon sx={{ fontSize: '2rem !important', color: '#ff5b1d' }} />,
@@ -639,14 +665,17 @@ const index = () => {
     // }, [selectedTab, selectedTreeData, dates, page, pageSize, search, regPage, regPageSize, regSearch, sort, order, regSort, regOrder])
 
     useEffect(() => {
+        console.log(selectedTab)
         if (selectedTab == 'request') {
             tableData?.forEach(el => el.contextMenuKeys = !selectedTreeData?.isCurrent ? 'view' : (!el?.statusCode ? 'accept, decline' : 'view'))
             setColumns(requestColumns || [])
+            setContextMenus(excuseRequestContextMenus)
         } else {
             tableData?.forEach(el => el.contextMenuKeys = 'view')
             setColumns(registrationColumns || [])
+            setContextMenus(excuseReportContextMenus)
         }
-    }, [tableData])
+    }, [tableData, selectedTab])
 
     const handleRegister = params => {
         console.log('handleRegister')
@@ -792,6 +821,10 @@ const index = () => {
         //     })
     }
 
+    const clearDateRange = () => {
+        setDates({startDate: null, endDate: null})
+    }
+
     const onTabChange = (data) => {
         let tabData = {
             index: String(data?.activeIndex),
@@ -922,8 +955,11 @@ const index = () => {
                                                                 }}
                                                             />
                                                         </Col>
-                                                        <div className="pickerSeparator">
-                                                            <i className="la la-ellipsis-h" />
+                                                        <div className="pickerSeparator"
+                                                                style={{cursor: 'pointer',
+                                                                lineHeight: '1em'}}
+                                                            onClick={clearDateRange}>
+                                                            <i className="la la-ellipsis-h"/>
                                                         </div>
                                                         <Col className='pl-0'>
                                                             <DayPickerInput

@@ -704,10 +704,10 @@ const AddGroup = ({ onClose, subjectList = [], classList = [] }) => {
                     <div className='align-center align-items-center' style={{ marginLeft: '17px', position: 'absolute', left: '1.5rem', bottom: '1.6rem' }}>
                         <label className="form-check-label font-mulish" htmlFor="reAdd" style={{ color: '#575962', fontSize: '14px', fontWeight: '400' }}>
                             <input
-                                className="form-check-input modal-position form-modal-check mt-0"
+                                className="form-check-input form-modal-check"
                                 id='reAdd'
                                 type="checkbox"
-                                style={{ borderRadius: '4px', fontSize: '18px' }}
+                                style={{ borderRadius: '4px', fontSize: '18px', marginTop: '1px' }}
                                 value={addAgain}
                                 onChange={(e, data) => setAddAgain(e?.target?.checked)}
                             />&nbsp;&nbsp;{t('group.addAgain')}

@@ -20,6 +20,7 @@
 
 .table > :not(:last-child) > :last-child > * {
   border-bottom-color: var(--separator);
+  border-width: 1px;
 }
 
 .table > :not(caption) > * > * {

@@ -133,7 +133,7 @@ const view = ({ onClose, group }) => {
             <Modal.Body>
                 <Row className='align-items-center mb-4 ml-1 mr-1'>
                     <Col>
-                        <span className='bolder fs-11' style={{ color: '#575962' }}>{`${translations(locale)?.total}: ${students?.length}`}</span>
+                        <span className='bolder fs-10' style={{ color: '#575962' }}>{`${translations(locale)?.total}: ${students?.length}`}</span>
                     </Col>
                     <Col md={3} style={{
                         display: 'inline-flex'
@@ -147,7 +147,7 @@ const view = ({ onClose, group }) => {
                             className='btn m-btn--icon m-btn--icon-only btn-info br-03 mx-1'
                         >
                             <i
-                                className="la la-file-excel-o"
+                                className="la-old la-file-excel-o"
                                 style={{
                                     fontSize: '22px',
                                     color: '#ffffff',
@@ -157,6 +157,7 @@ const view = ({ onClose, group }) => {
                         <input
                             value={searchKey}
                             className='form-control br-08'
+                            style={{width: '210px', height: '35px'}}
                             placeholder={translations(locale)?.search}
                             onChange={e => handleSearch(e.target.value)}
                         />
@@ -202,14 +203,12 @@ const view = ({ onClose, group }) => {
                 </Row>
             </Modal.Body>
             <Modal.Footer className="text-center">
-                <div className='col-12 text-center'>
-                    <button
-                        className='btn m-btn--pill btn-outline-metal text-uppercase'
-                        onClick={onClose}
-                    >
-                        {translations(locale)?.close}
-                    </button>
-                </div>
+                <button
+                    className='btn m-btn--pill btn-sm btn-outline-metal text-uppercase d-flex align-items-center'
+                    onClick={onClose}
+                >
+                    {translations(locale)?.close}
+                </button>
             </Modal.Footer>
             {
                 loading &&

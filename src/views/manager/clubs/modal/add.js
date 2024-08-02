@@ -176,7 +176,7 @@ const AddClub = ({onClose}) => {
         >
             <Modal.Header closeButton style={{padding: '1rem'}}>
                 <Modal.Title className="modal-title d-flex flex-row justify-content-between w-100">
-                    {t('club.title')}
+                    {t('add')}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>

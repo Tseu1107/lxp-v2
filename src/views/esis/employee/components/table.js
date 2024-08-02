@@ -163,6 +163,7 @@ const table = ({ data, openModal, updateTable, onTableRender }) => {
             locale={locale}
             data={getTableList(data)}
             columns={columns}
+            className='mx-1'
             rowStyle={handleRowStyle}
             onInteraction={handleInteraction}
             totalDataSize={getTableTotalSize(data)}

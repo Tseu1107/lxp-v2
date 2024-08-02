@@ -6,11 +6,40 @@ import secureLocalStorage from "react-secure-storage";
 import ReactToPrint from 'react-to-print';
 import {NDropdown as Dropdown} from "widgets/Dropdown";
 import message from "modules/message";
+import SearchIcon from '@material-ui/icons/Search';
+import { makeStyles, InputBase, IconButton, Paper } from "@material-ui/core";
 
 const locale = secureLocalStorage?.getItem('selectedLang') || 'mn'
 import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded'
+import Search from "modules/DataTable/Search";
 // import {fetchRequest} from "utils/fetchRequest";
 // import {managerCurriculumProgress, managerCurriculumProgressExcel} from "Utilities/url";
+
+const useStyles = makeStyles({
+    root: {
+        fontSize: '1rem !important',
+        padding: '0px 4px',
+        display: 'flex',
+        alignItems: 'center',
+        width: 220,
+        border: '1px solid #EBEDF2',
+        boxShadow: 'none',
+        borderRadius: 8,
+        height: 35
+    },
+    input: {
+        fontSize: '1rem !important',
+        color: '#4e4e4e',
+        marginLeft: 8,
+        flex: 1,
+        width: 200,
+        fontFamily: 'Mulish'
+    },
+    iconButton: {
+        padding: 8,
+        color: '#32a9e2'
+    },
+});
 
 const progress = () => {
     const printRef = useRef();
@@ -500,7 +529,12 @@ const progress = () => {
                     clone?.sort((a, b) => {
                         return order === 'asc' ? a.firstName?.localeCompare(b.firstName) : b.firstName?.localeCompare(a.firstName);
                     })
-                    break;
+                // case 'name':
+                //     clone?.sort((a, b) => {
+                //         console.log(a)
+                //         return order === 'asc' ? a.groups?.localeCompare(b.groups) : b.groups?.localeCompare(a.groups)
+                //     })
+                //     break;
             }
             setTeachers(clone)
         }
@@ -533,6 +567,7 @@ const progress = () => {
     //     })
     //     printRef.current.children[0].style.display = 'none'
     // }
+    const classes = useStyles();
 
     return (
         <div>
@@ -543,14 +578,13 @@ const progress = () => {
             <div className="m-portlet mt-2">
                 <div className="m-portlet__body">
                     <div className={'ml-5 d-flex py-4'} style={{
-                        textAlign: 'center',
+                        alignItems: 'center',
                         justifyContent: 'center'
                     }}>
-                        <label className='d-flex modal-label mr-4' style={{
+                        <label className='d-flex col-form-label mr-4' style={{
                             fontWeight: 800,
                             fontFamily: 'PinnacleBold',
                             position: 'relative',
-                            top: 5,
                         }}>
                             {translations(locale)?.grade}
                         </label>
@@ -575,11 +609,10 @@ const progress = () => {
                             onChange={(e, data) => setSelectedGrade(data?.value)}
                         />
 
-                        <label className='d-flex modal-label ml-4 mr-4' style={{
+                        <label className='d-flex col-form-label ml-4 mr-4' style={{
                             fontWeight: 800,
                             fontFamily: 'PinnacleBold',
                             position: 'relative',
-                            top: 5,
                         }}>
                             {translations(locale)?.season}
                         </label>
@@ -652,7 +685,7 @@ const progress = () => {
                                                     }
                                                 }}
                                             >
-                                                <i className="la la-file-excel-o"
+                                                <i className="la-old la-file-excel-o"
                                                    style={{
                                                        fontSize: 22,
                                                        color: 'white'
@@ -687,18 +720,24 @@ const progress = () => {
                                                 suppressErrors={true}
                                             />
                                         </div>
-                                        <div>
-                                            <input
-                                                className={'form-control'}
-                                                placeholder="Хайх"
-                                                type="text"
-                                                aria-label="Search..."
-                                                onChange={(e) => {
-                                                    setSearchQuery(e?.target?.value)
-                                                }}
-                                                value={searchQuery}
-                                            />
-                                        </div>
+                                            <Paper className={classes.root}>
+                                                <InputBase
+                                                    className={classes.input}
+                                                    placeholder="Хайх"
+                                                    type="text"
+                                                    aria-label="Search..."
+                                                    onChange={(e) => {
+                                                        setSearchQuery(e?.target?.value)
+                                                    }}
+                                                    value={searchQuery}
+                                                />
+                                                <IconButton
+                                                    className={classes.iconButton}
+                                                    aria-label="Search"
+                                                >
+                                                    <SearchIcon />
+                                                </IconButton>
+                                            </Paper>
                                     </div>
                                     <div className={'table-responsive'}>
                                         <table
@@ -716,9 +755,9 @@ const progress = () => {
                                                     className={'text-center td-clickable'}>{translations(locale)?.teacher?.code}
                                                     {
                                                         sortColumn === 'code'
-                                                            ? (sortOrder === 'desc' ? <span class="caret-4-desc"/> :
-                                                            <span class="caret-4-asc"/>)
-                                                            : <span class="order-4"/>
+                                                            ? (sortOrder === 'desc' ? <span className="caret-4-desc"/> :
+                                                            <span className="caret-4-asc"/>)
+                                                            : <span className="order-4"/>
                                                     }
                                                 </th>
                                                 <th rowSpan={2} width={200}
@@ -728,9 +767,9 @@ const progress = () => {
                                                     className={'text-center td-clickable'}>{translations(locale)?.teacher?.lastname}
                                                     {
                                                         sortColumn === 'lastName'
-                                                            ? (sortOrder === 'desc' ? <span class="caret-4-desc"/> :
-                                                            <span class="caret-4-asc"/>)
-                                                            : <span class="order-4"/>
+                                                            ? (sortOrder === 'desc' ? <span className="caret-4-desc"/> :
+                                                            <span className="caret-4-asc"/>)
+                                                            : <span className="order-4"/>
                                                     }
                                                 </th>
                                                 <th rowSpan={2} width={200}
@@ -740,9 +779,9 @@ const progress = () => {
                                                     className={'text-center td-clickable'}>{translations(locale)?.teacher?.name}
                                                     {
                                                         sortColumn === 'lastName'
-                                                            ? (sortOrder === 'desc' ? <span class="caret-4-desc"/> :
-                                                            <span class="caret-4-asc"/>)
-                                                            : <span class="order-4"/>
+                                                            ? (sortOrder === 'desc' ? <span className="caret-4-desc"/> :
+                                                            <span className="caret-4-asc"/>)
+                                                            : <span className="order-4"/>
                                                     }
                                                 </th>
                                                 <th rowSpan={2} width={220}

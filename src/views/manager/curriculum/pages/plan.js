@@ -340,7 +340,7 @@ const plan = () => {
             <div className="m-portlet mt-2">
                 <div className="m-portlet__body">
                     <div className={'ml-5 d-flex py-4'} style={{
-                        textAlign: 'center',
+                        alignItems: 'center',
                         justifyContent: 'center'
                     }}>
                         <label className='d-flex modal-label mr-4' style={{
@@ -397,13 +397,13 @@ const plan = () => {
                             ?
                             <>
                                 <button
-                                    className='btn btn-sm btn-success m-btn--pill text-uppercase'
+                                    className='btn btn-sm btn-success m-btn--pill text-uppercase d-inline-flex align-content-center justify-content-center'
                                     onClick={submitSave}
                                 >
                                     {translations(locale)?.save}
                                 </button>
                                 <button
-                                    className='btn btn-link'
+                                    className='btn btn-link m-btn--custom'
                                     onClick={() => setIsEdit(false)}
                                 >
                                     {translations(locale)?.back}
@@ -411,7 +411,7 @@ const plan = () => {
                             </>
                             :
                             <button
-                                className='btn btn-sm btn-primary m-btn--pill text-uppercase d-inline-flex align-content-center justify-content-center ml-4'
+                                className='btn btn-sm btn-primary m-btn--pill text-uppercase d-inline-flex align-content-center justify-content-center'
                                 style={{color: 'white', maxHeight: 32}}
                                 onClick={() => {
                                     setIsEdit(true)
@@ -425,7 +425,12 @@ const plan = () => {
                         <div className="m-portlet__body">
                             {
                                 subjects && subjects?.length > 0 && <>
-                                    <p>{isEdit ? translations(locale)?.manager?.curriculum_weekly_count_description : translations(locale)?.manager?.curriculum_weekly_count}</p>
+                                    <p>{
+                                        // isEdit ? 
+                                        translations(locale)?.manager?.curriculum_weekly_count_description
+                                        //:  translations(locale)?.manager?.curriculum_weekly_count
+                                        }
+                                    </p>
                                     <table className={'table table-striped table-bordered table-custom react-bootstrap-table'} style={{width: '100%'}}>
                                         <thead style={{width: '100%'}}>
                                         <tr>

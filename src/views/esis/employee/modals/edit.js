@@ -107,6 +107,7 @@ const edit = ({ onClose, onSubmit, esisUser }) => {
                 return (
                     <Checkbox
                         checked={cell || false}
+                        style={{color: '#ff5b1d'}}
                         onChange={(e) => handleCheckboxChange(row, e?.target?.checked)}
                     />
                 );
